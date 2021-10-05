@@ -9,3 +9,14 @@ C:\Users\Bonface\Documents\RaylibStarterCS\Project2D\bin\Debug\matrixclasses.pdb
 C:\Users\Bonface\Documents\RaylibStarterCS\Project2D\bin\Debug\matrixclasses.dll.config
 C:\Users\Bonface\Documents\RaylibStarterCS\Project2D\obj\Debug\Project2D.csproj.CopyComplete
 C:\Users\Bonface\Documents\RaylibStarterCS\Project2D\obj\Debug\Project2D.csproj.AssemblyReference.cache
+D:\AIE\MathsForGamesAssessments\NewMathsForGames\Project2D\bin\Debug\Project2D.exe.config
+D:\AIE\MathsForGamesAssessments\NewMathsForGames\Project2D\bin\Debug\Project2D.exe
+D:\AIE\MathsForGamesAssessments\NewMathsForGames\Project2D\bin\Debug\Project2D.pdb
+D:\AIE\MathsForGamesAssessments\NewMathsForGames\Project2D\bin\Debug\matrixclasses.dll
+D:\AIE\MathsForGamesAssessments\NewMathsForGames\Project2D\bin\Debug\matrixclasses.pdb
+D:\AIE\MathsForGamesAssessments\NewMathsForGames\Project2D\bin\Debug\matrixclasses.dll.config
+D:\AIE\MathsForGamesAssessments\NewMathsForGames\Project2D\obj\Debug\Project2D.csproj.AssemblyReference.cache
+D:\AIE\MathsForGamesAssessments\NewMathsForGames\Project2D\obj\Debug\Project2D.csproj.CoreCompileInputs.cache
+D:\AIE\MathsForGamesAssessments\NewMathsForGames\Project2D\obj\Debug\Project2D.csproj.CopyComplete
+D:\AIE\MathsForGamesAssessments\NewMathsForGames\Project2D\obj\Debug\Project2D.exe
+D:\AIE\MathsForGamesAssessments\NewMathsForGames\Project2D\obj\Debug\Project2D.pdb
