@@ -7,7 +7,6 @@ namespace Project2D
     class SpriteObject : SceneObject
     {
         Texture2D texture = new Texture2D();
-        Image image = new Image();
 
         public float Width
         {

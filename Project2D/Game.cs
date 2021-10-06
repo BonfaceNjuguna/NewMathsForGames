@@ -43,14 +43,6 @@ namespace Project2D
             tankSprite.SetRotate(-90 * (float)(Math.PI / 180.0f));
             tankSprite.SetPosition(tankSprite.Width / 2.0f, -tankSprite.Height / 2.0f);
 
-            //background
-            Image image = LoadImage("../Images/dirt.png");  
-            Texture2D texture = LoadTextureFromImage(image);
-
-            image = GetTextureData(texture);
-
-            texture = LoadTextureFromImage(image);
-
             //turrent
             turretSprite.Load("../Images/barrelBlue_outline.png");
             turretSprite.SetRotate(-90 * (float)(Math.PI / 180.0f));
@@ -131,8 +123,7 @@ namespace Project2D
                 Vector3 facing = new Vector3(bulletObject.LocalTransform.m1, bulletObject.LocalTransform.m4, 1) * deltaTime * -100;
                 bulletObject.Translate(facing.x, facing.y);
             }
-
-            bulletObject.Update;
+            bulletObject.Update(deltaTime);
         }
 
         public void Draw()
@@ -144,6 +135,7 @@ namespace Project2D
             DrawText(fps.ToString(), 10, 10, 14, Color.RED);
 
             tankObject.Draw();
+            bulletObject.Draw();
 
             EndDrawing();
         }
