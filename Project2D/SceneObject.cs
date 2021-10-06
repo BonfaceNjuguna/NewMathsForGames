@@ -13,6 +13,8 @@ namespace Project2D
         protected Matrix3 localTransform = new Matrix3();
         protected Matrix3 globalTransform = new Matrix3();
 
+        public bool IsDestroyed = false;
+
         public SceneObject Parent
         {
             get { return parent; }
@@ -78,6 +80,10 @@ namespace Project2D
 
         public void Update(float deltaTime)
         {
+
+            if (IsDestroyed)
+                return;
+
             // run OnUpdate behaviour
             OnUpdate(deltaTime);
 
@@ -90,6 +96,10 @@ namespace Project2D
 
         public void Draw()
         {
+            
+            if (IsDestroyed)
+                return;
+
             // run OnDraw behaviour
             OnDraw();
 
@@ -100,7 +110,7 @@ namespace Project2D
             }
         }
 
-        public Matrix3 LocalTransform { get { return localTransform; } }
+        public Matrix3 LocalTransform { get { return localTransform; } set { localTransform = value; } }
         public Matrix3 GlobalTransform { get { return globalTransform; } }
 
         public void UpdateTransform()

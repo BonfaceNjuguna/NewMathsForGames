@@ -10,7 +10,7 @@ namespace Project2D
     class Bullet : SceneObject
     {
 
-        public Vector3 speed;
+        public Vector3 speed = new Vector3(0, 0, 0);
         public override void OnUpdate(float deltaTime)
         {
             Translate(speed.x * deltaTime, speed.y * deltaTime);
