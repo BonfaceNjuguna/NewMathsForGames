@@ -30,6 +30,7 @@ namespace Project2D
         private int frames;
 
         private float deltaTime = 0.005f;
+        private Texture2D background;
 
         public Game()
         {
@@ -55,11 +56,22 @@ namespace Project2D
             bulletSprite.SetRotate(90 * (float)(Math.PI / 180.0f));
             bulletSprite.SetPosition(-35, 10);
 
+            //background
+            Texture2D background = LoadTexture("../Images/dirt.png");
+
             //add targets
             SceneObject barrel = new SceneObject();
             barrel.SetPosition(30, 240);
 
+            SceneObject barrel2 = new SceneObject();
+            barrel2.SetPosition(530, 340);
+
+            SceneObject barrel3 = new SceneObject();
+            barrel3.SetPosition(350, 250);
+
             targets.Add(barrel);
+            targets.Add(barrel2);
+            targets.Add(barrel3);
 
             turretObject.AddChild(turretSprite);
             tankObject.AddChild(tankSprite);
@@ -141,7 +153,7 @@ namespace Project2D
 
                 float distance = (float)Math.Sqrt(v.x * v.x + v.y * v.y);
 
-                if (distance < 40)
+                if (distance < 35)
                 {
                     b.IsDestroyed = true;
                 }
@@ -158,6 +170,8 @@ namespace Project2D
             BeginDrawing();
 
             ClearBackground(Color.WHITE);
+
+            DrawTexture(background, 640, 480, Color.WHITE);
 
             DrawText(fps.ToString(), 10, 10, 14, Color.RED);
 
