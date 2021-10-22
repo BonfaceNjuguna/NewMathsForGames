@@ -9,13 +9,14 @@ using static Raylib.Raylib;
 
 namespace Project2D
 {
-    class Game
+    public class Game
     {
         SceneObject tankObject = new SceneObject();
         SceneObject turretObject = new SceneObject();
-        Bullet bulletObject = new Bullet();
+        //Bullet bulletObject = new Bullet();
 
         List<SceneObject> targets = new List<SceneObject>();
+        List<Bullet> projectiles = new List<Bullet>(); //bullet
 
         SpriteObject tankSprite = new SpriteObject();
         SpriteObject turretSprite = new SpriteObject();
@@ -51,13 +52,22 @@ namespace Project2D
             turretSprite.SetRotate(-90 * (float)(Math.PI / 180.0f));
             turretSprite.SetPosition(0, -turretSprite.Width / 2.0f);
 
-            //bullet
-            bulletSprite.Load("../Images/bulletBlue_outline.png");
-            bulletSprite.SetRotate(90 * (float)(Math.PI / 180.0f));
-            bulletSprite.SetPosition(-35, 10);
-
             //background
             Texture2D background = LoadTexture("../Images/dirt.png");
+
+            //bullet
+            bulletSprite.Load("../Images/bulletBlue_outline.png");
+            Bullet shot = new Bullet(); //bullet
+            shot.SetRotate(90 * (float)(Math.PI / 180.0f)); //bullet
+            shot.SetPosition(-35, 10); //bullet
+
+            Bullet shot1 = new Bullet(); //bullet
+            shot1.SetRotate(90 * (float)(Math.PI / 180.0f)); //bullet
+            shot1.SetPosition(-35, 10); //bullet
+
+            projectiles.Add(shot); //bullet
+            projectiles.Add(shot1); //bullet
+
 
             //add targets
             SceneObject barrel = new SceneObject();
@@ -76,7 +86,8 @@ namespace Project2D
             turretObject.AddChild(turretSprite);
             tankObject.AddChild(tankSprite);
             tankObject.AddChild(turretObject);
-            bulletObject.AddChild(bulletSprite);
+            shot.AddChild(bulletSprite);
+            shot1.AddChild(bulletSprite);
 
             tankObject.SetPosition(200, 200);
         }
@@ -140,16 +151,16 @@ namespace Project2D
             {
                 float bulletSpeed = 100;
 
-                bulletObject.LocalTransform = turretObject.GlobalTransform;
-                bulletObject.speed.x = -bulletObject.LocalTransform.m1 * bulletSpeed;
-                bulletObject.speed.y = -bulletObject.LocalTransform.m4 * bulletSpeed;
-            } 
-            bulletObject.Update(deltaTime);
+                projectiles.LocalTransform = turretObject.GlobalTransform;
+                projectiles.speed.x = -projectiles.LocalTransform.m1 * bulletSpeed;
+                projectiles.speed.y = -projectiles.LocalTransform.m4 * bulletSpeed;
+            }
+            projectiles.Update(deltaTime);
 
             foreach (SceneObject b in targets)
             {
                 var v = new Vector3(b.GlobalTransform.m3, b.GlobalTransform.m6, 0) - 
-                new Vector3(bulletObject.GlobalTransform.m3, bulletObject.GlobalTransform.m6, 0);
+                new Vector3(projectiles.GlobalTransform.m3, projectiles.GlobalTransform.m6, 0);
 
                 float distance = (float)Math.Sqrt(v.x * v.x + v.y * v.y);
 
@@ -176,7 +187,7 @@ namespace Project2D
             DrawText(fps.ToString(), 10, 10, 14, Color.RED);
 
             tankObject.Draw();
-            bulletObject.Draw();
+            projectiles.Draw();
 
             EndDrawing();
         }
