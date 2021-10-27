@@ -18,9 +18,15 @@ namespace Project2D
             get { return texture.height; }
         }
 
+        //constructor overload
+        public SpriteObject(SpriteObject other)
+        {
+            texture = other.texture;
+            localTransform = other.localTransform;
+        }
+
         public SpriteObject()
         {
-
         }
 
         public void Load(string filename)

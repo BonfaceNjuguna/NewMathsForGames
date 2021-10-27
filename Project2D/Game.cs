@@ -33,6 +33,8 @@ namespace Project2D
         private float deltaTime = 0.005f;
         private Texture2D background;
 
+        private matrixclasses.Matrix3 bulletmatrix; //here we initiated a Matrix3 from the matrixclasses linb
+
         public Game()
         {
         }
@@ -56,17 +58,15 @@ namespace Project2D
             Texture2D background = LoadTexture("../Images/dirt.png");
 
             //bullet
-            bulletSprite.Load("../Images/bulletBlue_outline.png");
-            Bullet shot = new Bullet(); //bullet
-            shot.SetRotate(90 * (float)(Math.PI / 180.0f)); //bullet
-            shot.SetPosition(-35, 10); //bullet
+            bulletSprite.Load("../Images/bulletBlue_outline.png"); //loading the bullet
+            bulletSprite.SetRotate(90 * (float)(Math.PI / 180.0f)); //set the right rotate angle
 
-            Bullet shot1 = new Bullet(); //bullet
-            shot1.SetRotate(90 * (float)(Math.PI / 180.0f)); //bullet
-            shot1.SetPosition(-35, 10); //bullet
+            bulletmatrix = new matrixclasses.Matrix3(); //create a new matrix3 for bulletmatrix
+            bulletmatrix.SetTranslation(-turretSprite.Height, 0.0f);
 
-            projectiles.Add(shot); //bullet
-            projectiles.Add(shot1); //bullet
+            var matrix = new matrixclasses.Matrix3();//create a new matrix3 for var matrix
+            matrix.SetTranslation(-bulletSprite.Height / 2.0f, bulletSprite.Width / 2.0f);
+            bulletSprite.LocalTransform = matrix * bulletSprite.LocalTransform;
 
 
             //add targets
@@ -86,8 +86,6 @@ namespace Project2D
             turretObject.AddChild(turretSprite);
             tankObject.AddChild(tankSprite);
             tankObject.AddChild(turretObject);
-            shot.AddChild(bulletSprite);
-            shot1.AddChild(bulletSprite);
 
             tankObject.SetPosition(200, 200);
         }
@@ -150,28 +148,32 @@ namespace Project2D
             if (IsKeyDown(KeyboardKey.KEY_SPACE))
             {
                 float bulletSpeed = 100;
+                Bullet b = new Bullet(); //create a new bullet
+                b.LocalTransform = turretObject.GlobalTransform; //assign the localtransform for the new bullet to the turrents globaltransform
+                b.speed.x = -b.LocalTransform.m1 * bulletSpeed; //bullet speed
+                b.speed.y = -b.LocalTransform.m4 * bulletSpeed;
 
-                projectiles.LocalTransform = turretObject.GlobalTransform;
-                projectiles.speed.x = -projectiles.LocalTransform.m1 * bulletSpeed;
-                projectiles.speed.y = -projectiles.LocalTransform.m4 * bulletSpeed;
+                b.LocalTransform = b.LocalTransform * bulletmatrix;
+                b.AddChild(new SpriteObject(bulletSprite));
+                projectiles.Add(b);
             }
-            projectiles.Update(deltaTime);
 
-            foreach (SceneObject b in targets)
+            foreach (var bullet in projectiles)
             {
-                var v = new Vector3(b.GlobalTransform.m3, b.GlobalTransform.m6, 0) - 
-                new Vector3(projectiles.GlobalTransform.m3, projectiles.GlobalTransform.m6, 0);
+                bullet.Update(deltaTime);
 
-                float distance = (float)Math.Sqrt(v.x * v.x + v.y * v.y);
-
-                if (distance < 35)
+                foreach (SceneObject b in targets)
                 {
-                    b.IsDestroyed = true;
-                }
 
-                if (!b.IsDestroyed)
-                {
-                    DrawCircle((int)b.GlobalTransform.m3, (int)b.GlobalTransform.m6, 40, new Color(255, 0, 0, 255));
+                    var v = new Vector3(b.GlobalTransform.m3, b.GlobalTransform.m6, 0) -
+                    new Vector3(bullet.GlobalTransform.m3, bullet.GlobalTransform.m6, 0);
+
+                    float distance = (float)Math.Sqrt(v.x * v.x + v.y * v.y);
+
+                    if (distance < 35)
+                    {
+                        b.IsDestroyed = true;
+                    }
                 }
             }
         }
@@ -187,7 +189,19 @@ namespace Project2D
             DrawText(fps.ToString(), 10, 10, 14, Color.RED);
 
             tankObject.Draw();
-            projectiles.Draw();
+
+            foreach (var b in projectiles)
+            {
+                b.Draw();
+            }
+
+            foreach (SceneObject b in targets)
+            {
+                if (!b.IsDestroyed)
+                {
+                    DrawCircle((int)b.GlobalTransform.m3, (int)b.GlobalTransform.m6, 40, new Color(255, 0, 0, 255));
+                }
+            }
 
             EndDrawing();
         }
