@@ -1,0 +1,7 @@
+D:\AIE\maths for games\math projects\matrixclasses\bin\Debug\matrixclasses.dll.config
+D:\AIE\maths for games\math projects\matrixclasses\bin\Debug\matrixclasses.dll
+D:\AIE\maths for games\math projects\matrixclasses\bin\Debug\matrixclasses.pdb
+D:\AIE\maths for games\math projects\matrixclasses\obj\Debug\matrixclasses.csproj.CoreCompileInputs.cache
+D:\AIE\maths for games\math projects\matrixclasses\obj\Debug\matrixclasses.dll
+D:\AIE\maths for games\math projects\matrixclasses\obj\Debug\matrixclasses.pdb
+D:\AIE\maths for games\math projects\matrixclasses\obj\Debug\matrixclasses.csproj.AssemblyReference.cache
