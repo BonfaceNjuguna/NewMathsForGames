@@ -69,9 +69,9 @@ namespace matrixclasses
         public static Vector3 operator *(Matrix3 lhs, Vector3 rhs)
         {
             return new Vector3(
-                lhs.m1 * rhs.x + lhs.m2 * rhs.y, lhs.m3 * rhs.z,
-                lhs.m4 * rhs.x + lhs.m5 * rhs.y, lhs.m6 * rhs.z,
-                lhs.m7 * rhs.x + lhs.m8 * rhs.y, lhs.m9 * rhs.z);
+                lhs.m1 * rhs.x + lhs.m4 * rhs.y + lhs.m7 * rhs.z,
+                lhs.m2 * rhs.x + lhs.m5 * rhs.y + lhs.m8 * rhs.z,
+                lhs.m3 * rhs.x + lhs.m6 * rhs.y + lhs.m9 * rhs.z) ;
         }
 
         public void Set(Matrix3 m)

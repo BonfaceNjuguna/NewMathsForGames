@@ -5,3 +5,10 @@ D:\AIE\maths for games\math projects\matrixclasses\obj\Debug\matrixclasses.cspro
 D:\AIE\maths for games\math projects\matrixclasses\obj\Debug\matrixclasses.dll
 D:\AIE\maths for games\math projects\matrixclasses\obj\Debug\matrixclasses.pdb
 D:\AIE\maths for games\math projects\matrixclasses\obj\Debug\matrixclasses.csproj.AssemblyReference.cache
+D:\AIE\MathsForGamesAssessments\NewMathsForGames\matrixclasses\obj\Debug\matrixclasses.csproj.AssemblyReference.cache
+D:\AIE\MathsForGamesAssessments\NewMathsForGames\matrixclasses\obj\Debug\matrixclasses.csproj.CoreCompileInputs.cache
+D:\AIE\MathsForGamesAssessments\NewMathsForGames\matrixclasses\obj\Debug\matrixclasses.dll
+D:\AIE\MathsForGamesAssessments\NewMathsForGames\matrixclasses\obj\Debug\matrixclasses.pdb
+D:\AIE\MathsForGamesAssessments\NewMathsForGames\matrixclasses\bin\Debug\matrixclasses.dll.config
+D:\AIE\MathsForGamesAssessments\NewMathsForGames\matrixclasses\bin\Debug\matrixclasses.dll
+D:\AIE\MathsForGamesAssessments\NewMathsForGames\matrixclasses\bin\Debug\matrixclasses.pdb

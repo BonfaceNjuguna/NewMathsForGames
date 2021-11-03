@@ -5,9 +5,6 @@ namespace matrixclasses
     public class Vector3
     {
         public float x, y, z;
-        private float v1;
-        private float v2;
-        private float v3;
 
         public Vector3()
         {
@@ -20,13 +17,6 @@ namespace matrixclasses
             x = x3d;
             y = y3d;
             z = z3d;
-        }
-
-        public Vector3(float x3d, float y3d, float z3d, float v1, float v2, float v3) : this(x3d, y3d, z3d)
-        {
-            this.v1 = v1;
-            this.v2 = v2;
-            this.v3 = v3;
         }
 
         //addition
