@@ -12,10 +12,10 @@ namespace matrixclasses
         public Colour() { colour = 0; }
         public Colour(byte red, byte green, byte blue, byte alpha) 
         {
-            red = 0;
-            green = 0;
-            blue = 0;
-            alpha = 0;
+            SetGreen(green);
+            SetRed(red);
+            SetBlue(blue);
+            SetAlpha(alpha);
         }
 
         public byte GetRed()
@@ -25,7 +25,6 @@ namespace matrixclasses
         }
         public void SetRed(byte red) 
         {
-            red = 255;
             colour = colour & 0x00ffffff;
             colour |= (UInt32)red << 24;
         }
@@ -36,9 +35,8 @@ namespace matrixclasses
         }
         public void SetGreen(byte green) 
         {
-            green = 255;
             colour = colour & 0xff00ffff;
-            colour |= (UInt32)green << 24;
+            colour |= (UInt32)green << 16;
         }
         public byte GetBlue() 
         {
@@ -47,9 +45,8 @@ namespace matrixclasses
         }
         public void SetBlue(byte blue) 
         {
-            blue = 255;
             colour = colour & 0xffff00ff;
-            colour |= (UInt32)blue << 24;
+            colour |= (UInt32)blue << 8;
         }
         public byte GetAlpha() 
         {
@@ -58,9 +55,8 @@ namespace matrixclasses
         }
         public void SetAlpha(byte alpha) 
         {
-            alpha = 255;
             colour = colour & 0xffffff00;
-            colour |= (UInt32)alpha << 24;
+            colour |= (UInt32)alpha;
         }
     }
 }
