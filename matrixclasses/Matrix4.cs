@@ -139,12 +139,9 @@ namespace matrixclasses
         {
             Set
             (
-                /*1, 0, 0,
-                0, (float)Math.Cos(radians), (float)Math.Sin(radians),
-                0, (float)-Math.Sin(radians), (float)Math.Cos(radians)*/
                 1, 0, 0, 0,
-                0, 1, 0, 0,
-                0, 0, 1, 0,
+                0, (float)Math.Cos(radians), (float)-Math.Sin(radians), 0,
+                0, (float)Math.Sin(radians), (float)Math.Cos(radians), 0,
                 0, 0 , 0, 1
             );
         }
@@ -154,12 +151,9 @@ namespace matrixclasses
         {
             Set
             (
-                /*(float)Math.Cos(radians), 0, -(float)Math.Sin(radians),
-                0, 1, 0,
-                (float)Math.Sin(radians), 0, (float)Math.Cos(radians)*/
-                1, 0, 0, 0,
+                (float)Math.Cos(radians), 0, (float)Math.Sin(radians), 0,
                 0, 1, 0, 0,
-                0, 0, 1, 0,
+                (float)-Math.Sin(radians), 0, (float)Math.Cos(radians), 0,
                 0, 0, 0, 1
             );
         }
@@ -169,11 +163,8 @@ namespace matrixclasses
         {
             Set
             (
-                /*(float)Math.Cos(radians), (float)Math.Sin(radians), 0,
-                (float)-Math.Sin(radians), (float)Math.Cos(radians), 0,
-                0, 0, 1*/
-                1, 0, 0, 0,
-                0, 1, 0, 0,
+                (float)Math.Cos(radians), (float)-Math.Sin(radians), 0, 0,
+                (float)Math.Sin(radians), (float)Math.Cos(radians), 0, 0,
                 0, 0, 1, 0,
                 0, 0, 0, 1
             );
@@ -217,19 +208,19 @@ namespace matrixclasses
         //translation
         public void SetTranslation(float x, float y)
         {
-            m6 = x; m8 = y; m12 = 1;
+            m4 = x; m8 = y; m12 = 1;
         }
 
         //translation
         public void Translate(float x, float y)
         {
-            m6 += x; m8 += y;
+            m4 += x; m8 += y;
         }
 
         //translate
         public void Translate(Vector4 v)
         {
-            m6 += v.x; m8 += v.y; m12 += v.z; m16 += v.w;
+            m4 += v.x; m8 += v.y; m12 += v.z;
         }
     }
 }
