@@ -34,22 +34,14 @@ namespace matrixclasses
         public readonly static Matrix3 identity = new Matrix3(1, 0, 0, 0, 1, 0, 0, 0, 1);
 
         //transpose
-        Matrix3 GetTransposed()
+        public Matrix3 Transposed()
         {
-            return new Matrix3(m1, m4, m7,
-                               m2, m5, m8,
-                               m3, m6, m9);
+            return new Matrix3(m1, m2, m3, m4, m5, m6, m7, m8, m9);
         }
 
         //martix multiplication
         public static Matrix3 operator *(Matrix3 lhs, Matrix3 rhs)
         {
-            /*return new Matrix3(
-                (lhs.m1 * rhs.m1 + lhs.m2 * rhs.m4 + lhs.m3 * rhs.m7), (lhs.m1 * rhs.m2 + lhs.m2 * rhs.m5 + lhs.m3 * rhs.m8), (lhs.m1 * rhs.m3 + lhs.m2 * rhs.m6 + lhs.m3 * rhs.m9),
-                (lhs.m4 * rhs.m1 + lhs.m5 * rhs.m4 + lhs.m6 * rhs.m7), (lhs.m4 * rhs.m2 + lhs.m5 * rhs.m5 + lhs.m6 * rhs.m8), (lhs.m4 * rhs.m3 + lhs.m5 * rhs.m6 + lhs.m6 * rhs.m9),
-                (lhs.m7 * rhs.m1 + lhs.m8 * rhs.m4 + lhs.m9 * rhs.m7), (lhs.m7 * rhs.m2 + lhs.m8 * rhs.m5 + lhs.m9 * rhs.m8), (lhs.m7 * rhs.m3 + lhs.m8 * rhs.m6 + lhs.m9 * rhs.m9)
-                );*/
-
             var m1 = (lhs.m1 * rhs.m1 + lhs.m4 * rhs.m2 + lhs.m7 * rhs.m3);
             var m2 = (lhs.m1 * rhs.m4 + lhs.m4 * rhs.m5 + lhs.m7 * rhs.m6);
             var m3 = (lhs.m1 * rhs.m7 + lhs.m4 * rhs.m8 + lhs.m7 * rhs.m9);
@@ -69,9 +61,9 @@ namespace matrixclasses
         public static Vector3 operator *(Matrix3 lhs, Vector3 rhs)
         {
             return new Vector3(
-                (lhs.m1 * rhs.x) + (lhs.m4 * rhs.y) + (lhs.m7 * rhs.z),
-                (lhs.m2 * rhs.x) + (lhs.m5 * rhs.y) + (lhs.m8 * rhs.z),
-                (lhs.m3 * rhs.x) + (lhs.m6 * rhs.y) + (lhs.m9 * rhs.z)
+                (lhs.m1 * rhs.x) + (lhs.m2 * rhs.y) + (lhs.m3 * rhs.z),
+                (lhs.m4 * rhs.x) + (lhs.m5 * rhs.y) + (lhs.m6 * rhs.z),
+                (lhs.m7 * rhs.x) + (lhs.m8 * rhs.y) + (lhs.m9 * rhs.z)
                 );
         }
 
@@ -195,7 +187,7 @@ namespace matrixclasses
         //translate
         public void Translate(Vector3 v)
         {
-            m3 += v.x; m6 += v.y; m9 += v.z;
+            m3 += v.x; m6 += v.y; m9 += 1;
         }
     }
 }
