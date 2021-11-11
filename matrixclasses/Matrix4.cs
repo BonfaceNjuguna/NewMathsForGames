@@ -18,7 +18,7 @@ namespace matrixclasses
             m13 = 0; m14 = 0; m15 = 0; m16 = 1;
         }
 
-        public Matrix4(float m1, float m4, float m7, float m2, float m5, float m8, float m3, float m6, float m9, float m10, float m11, float m12, float m13, float m14, float m15, float m16)
+        public Matrix4(float m1, float m2, float m3, float m4, float m5, float m6, float m7, float m8, float m9, float m10, float m11, float m12, float m13, float m14, float m15, float m16)
         {
             this.m1 = m1;
             this.m4 = m4;
@@ -40,63 +40,30 @@ namespace matrixclasses
 
         public readonly static Matrix4 identity = new Matrix4(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1);
 
-        //transpose
-        public Matrix4 Transposed()
-        {
-            /*return new Matrix4(m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15, m16);*/
-
-            return new Matrix4(m1, m5, m9, m13, m2, m6, m10, m14, m3, m7, m11, m15, m4, m8, m12, m16);
-        }
-
         //martix multiplication
         public static Matrix4 operator *(Matrix4 lhs, Matrix4 rhs)
         {
+            var m1 = (lhs.m1 * rhs.m1 + lhs.m5 * rhs.m2 + lhs.m9 * rhs.m3 + lhs.m13 * rhs.m4);
+            var m2 = (lhs.m2 * rhs.m1 + lhs.m6 * rhs.m2 + lhs.m10 * rhs.m3 + lhs.m14 * rhs.m4);
+            var m3 = (lhs.m3 * rhs.m1 + lhs.m7 * rhs.m2 + lhs.m11 * rhs.m3 + lhs.m15 * rhs.m4);
+            var m4 = (lhs.m4 * rhs.m1 + lhs.m8 * rhs.m2 + lhs.m12 * rhs.m3 + lhs.m16 * rhs.m4);
 
-            /*var m1 = (lhs.m1 * rhs.m1 + lhs.m5 * rhs.m2 + lhs.m9 * rhs.m3 + lhs.m13 * rhs.m4);
-            var m2 = (lhs.m1 * rhs.m5 + lhs.m5 * rhs.m6 + lhs.m9 * rhs.m7 + lhs.m13 * rhs.m8);
-            var m3 = (lhs.m1 + rhs.m9 + lhs.m5 * rhs.m10 + lhs.m9 * rhs.m11 + lhs.m13 * rhs.m12);
-            var m4 = (lhs.m1 * rhs.m13 + lhs.m5 * rhs.m14 + lhs.m9 * rhs.m15 + lhs.m13 * rhs.m16);
+            var m5 = (lhs.m1 * rhs.m5 + lhs.m5 * rhs.m6 + lhs.m9 * rhs.m7 + lhs.m13 * rhs.m8);
+            var m6 = (lhs.m2 * rhs.m5 + lhs.m6 * rhs.m6 + lhs.m10 * rhs.m7 + lhs.m14 * rhs.m8);
+            var m7 = (lhs.m3 * rhs.m5 + lhs.m7 * rhs.m6 + lhs.m11 * rhs.m7 + lhs.m15 * rhs.m8);
+            var m8 = (lhs.m4 * rhs.m5 + lhs.m8 * rhs.m6 + lhs.m12 * rhs.m7 + lhs.m16 * rhs.m8);
 
-            var m5 = (lhs.m2 * rhs.m1 + lhs.m6 * rhs.m2 + lhs.m10 * rhs.m3 + lhs.m14 + rhs.m4);
-            var m6 = (lhs.m2 * rhs.m5 + lhs.m6 * rhs.m6 + lhs.m10 * rhs.m7 + lhs.m14 + rhs.m8);
-            var m7 = (lhs.m2 * rhs.m9 + lhs.m6 * rhs.m10 + lhs.m10 * rhs.m11 + lhs.m14 + rhs.m12);
-            var m8 = (lhs.m2 * rhs.m13 + lhs.m6 * rhs.m14 + lhs.m10 * rhs.m15 + lhs.m14 + rhs.m16);
-
-            var m9 = (lhs.m3 * rhs.m1 + lhs.m7 * rhs.m2 + lhs.m11 * rhs.m3 + lhs.m15 * rhs.m4);
-            var m10 = (lhs.m3 * rhs.m5 + lhs.m7 * rhs.m6 + lhs.m11 * rhs.m7 + lhs.m15 * rhs.m8);
+            var m9 = (lhs.m1 * rhs.m9 + lhs.m5 * rhs.m10 + lhs.m9 * rhs.m11 + lhs.m13 * rhs.m12);
+            var m10 = (lhs.m2 * rhs.m9 + lhs.m6 * rhs.m10 + lhs.m10 * rhs.m11 + lhs.m14 * rhs.m12);
             var m11 = (lhs.m3 * rhs.m9 + lhs.m7 * rhs.m10 + lhs.m11 * rhs.m11 + lhs.m15 * rhs.m12);
-            var m12 = (lhs.m3 * rhs.m13 + lhs.m7 * rhs.m14 + lhs.m11 * rhs.m15 + lhs.m15 * rhs.m16);
+            var m12 = (lhs.m4 * rhs.m9 + lhs.m8 * rhs.m10 + lhs.m12 * rhs.m11 + lhs.m16 * rhs.m12);
 
-            var m13 = (lhs.m4 * rhs.m1 + lhs.m8 * rhs.m2 + lhs.m12 * rhs.m3 + lhs.m16 * rhs.m4);
-            var m14 = (lhs.m4 * rhs.m5 + lhs.m8 * rhs.m6 + lhs.m12 * rhs.m7 + lhs.m16 * rhs.m8);
-            var m15 = (lhs.m4 * rhs.m9 + lhs.m8 * rhs.m10 + lhs.m12 * rhs.m11 + lhs.m16 * rhs.m12);
-            var m16 = (lhs.m4 * rhs.m13 + lhs.m8 * rhs.m14 + lhs.m13 * rhs.m15 + lhs.m16 * rhs.m16);
+            var m13 = (lhs.m1 * rhs.m13 + lhs.m5 * rhs.m14 + lhs.m9 * rhs.m15 + lhs.m13 * rhs.m16);
+            var m14 = (lhs.m2 * rhs.m13 + lhs.m6 * rhs.m14 + lhs.m10 * rhs.m15 + lhs.m14 * rhs.m16);
+            var m15 = (lhs.m3 * rhs.m13 + lhs.m7 * rhs.m14 + lhs.m11 * rhs.m15 + lhs.m15 * rhs.m16);
+            var m16 = (lhs.m4 * rhs.m13 + lhs.m8 * rhs.m14 + lhs.m12 * rhs.m15 + lhs.m16 * rhs.m16);
 
-            return new Matrix4(m1, m5, m9, m13, m2, m6, m10, m14, m3, m7, m11, m15, m4, m8, m12, m16);*/
-
-
-            var m1 = (lhs.m1 * rhs.m1 + lhs.m2 * rhs.m5 + lhs.m3 * rhs.m9 + lhs.m4 * rhs.m13);
-            var m2 = (lhs.m5 * rhs.m2 + lhs.m6 * rhs.m6 + lhs.m7 * rhs.m10 + lhs.m8 * rhs.m14);
-            var m3 = (lhs.m9 + rhs.m3 + lhs.m10 * rhs.m7 + lhs.m11 * rhs.m11 + lhs.m12 * rhs.m15);
-            var m4 = (lhs.m13 * rhs.m4 + lhs.m14 * rhs.m8 + lhs.m15 * rhs.m12 + lhs.m16 * rhs.m16);
-
-            var m5 = (lhs.m1 * rhs.m1 + lhs.m2 * rhs.m5 + lhs.m3 * rhs.m9 + lhs.m4 * rhs.m13);
-            var m6 = (lhs.m5 * rhs.m2 + lhs.m6 * rhs.m6 + lhs.m7 * rhs.m10 + lhs.m8 * rhs.m14);
-            var m7 = (lhs.m9 + rhs.m3 + lhs.m10 * rhs.m7 + lhs.m11 * rhs.m11 + lhs.m12 * rhs.m15);
-            var m8 = (lhs.m13 * rhs.m4 + lhs.m14 * rhs.m8 + lhs.m15 * rhs.m12 + lhs.m16 * rhs.m16);
-
-            var m9 = (lhs.m1 * rhs.m1 + lhs.m2 * rhs.m5 + lhs.m3 * rhs.m9 + lhs.m4 * rhs.m13);
-            var m10 = (lhs.m5 * rhs.m2 + lhs.m6 * rhs.m6 + lhs.m7 * rhs.m10 + lhs.m8 * rhs.m14);
-            var m11 = (lhs.m9 + rhs.m3 + lhs.m10 * rhs.m7 + lhs.m11 * rhs.m11 + lhs.m12 * rhs.m15);
-            var m12 = (lhs.m13 * rhs.m4 + lhs.m14 * rhs.m8 + lhs.m15 * rhs.m12 + lhs.m16 * rhs.m16);
-
-            var m13 = (lhs.m1 * rhs.m1 + lhs.m2 * rhs.m5 + lhs.m3 * rhs.m9 + lhs.m4 * rhs.m13);
-            var m14 = (lhs.m5 * rhs.m2 + lhs.m6 * rhs.m6 + lhs.m7 * rhs.m10 + lhs.m8 * rhs.m14);
-            var m15 = (lhs.m9 + rhs.m3 + lhs.m10 * rhs.m7 + lhs.m11 * rhs.m11 + lhs.m12 * rhs.m15);
-            var m16 = (lhs.m13 * rhs.m4 + lhs.m14 * rhs.m8 + lhs.m15 * rhs.m12 + lhs.m16 * rhs.m16);
-
-
-            return new Matrix4(m1, m5, m9, m13, m2, m6, m10, m14, m3, m7, m11, m15, m4, m8, m12, m16);
+            return new Matrix4(m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15, m16);
 
 
         }
@@ -105,10 +72,10 @@ namespace matrixclasses
         public static Vector4 operator *(Matrix4 lhs, Vector4 rhs)
         {
             return new Vector4(
-                (lhs.m1 * rhs.x) + (lhs.m2 * rhs.y) + (lhs.m3 * rhs.z) + (lhs.m4 * rhs.w),
-                (lhs.m5 * rhs.x) + (lhs.m6 * rhs.y) + (lhs.m7 * rhs.z) + (lhs.m8 * rhs.w),
-                (lhs.m9 * rhs.x) + (lhs.m10 * rhs.y) + (lhs.m11 * rhs.z) + (lhs.m12 * rhs.w),
-                (lhs.m13 * rhs.x) + (lhs.m14 * rhs.y) + (lhs.m15 * rhs.z) + (lhs.m16 * rhs.w)
+                (lhs.m1 * rhs.x) + (lhs.m5 * rhs.y) + (lhs.m9 * rhs.z) + (lhs.m13 * rhs.w),
+                (lhs.m2 * rhs.x) + (lhs.m6 * rhs.y) + (lhs.m10 * rhs.z) + (lhs.m14 * rhs.w),
+                (lhs.m3 * rhs.x) + (lhs.m7 * rhs.y) + (lhs.m11 * rhs.z) + (lhs.m15 * rhs.w),
+                (lhs.m4 * rhs.x) + (lhs.m8 * rhs.y) + (lhs.m12 * rhs.z) + (lhs.m16 * rhs.w)
                 );
         }
 
@@ -161,9 +128,9 @@ namespace matrixclasses
             Set
             (
                 1, 0, 0, 0,
-                0, (float)Math.Cos(radians), (float)-Math.Sin(radians), 0,
-                0, (float)Math.Sin(radians), (float)Math.Cos(radians), 0,
-                0, 0 , 0, 1
+                0, (float)Math.Cos(radians), (float)Math.Sin(radians), 0,
+                0, -(float)Math.Sin(radians), (float)Math.Cos(radians), 0,
+                0, 0, 0, 1
             );
         }
 
@@ -172,9 +139,9 @@ namespace matrixclasses
         {
             Set
             (
-                (float)Math.Cos(radians), 0, (float)Math.Sin(radians), 0,
+                (float)Math.Cos(radians), 0, -(float)Math.Sin(radians), 0,
                 0, 1, 0, 0,
-                (float)-Math.Sin(radians), 0, (float)Math.Cos(radians), 0,
+                (float)Math.Sin(radians), 0, (float)Math.Cos(radians), 0,
                 0, 0, 0, 1
             );
         }
@@ -184,8 +151,8 @@ namespace matrixclasses
         {
             Set
             (
-                (float)Math.Cos(radians), (float)-Math.Sin(radians), 0, 0,
-                (float)Math.Sin(radians), (float)Math.Cos(radians), 0, 0,
+                (float)Math.Cos(radians), (float)Math.Sin(radians), 0, 0,
+                -(float)Math.Sin(radians), (float)Math.Cos(radians), 0, 0,
                 0, 0, 1, 0,
                 0, 0, 0, 1
             );
